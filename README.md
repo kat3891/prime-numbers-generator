@@ -1,5 +1,7 @@
 # Prime Number Generator
 
+WARNING: Only HTTPS communication works to communicate with the REST API.
+
 A prime number generator written in Java that gives all prime numbers in the range between two numbers provided by the user.
 It offers different prime number generation strategies, depending on the algorithm and the Java methods that have been chosen (for loops, Java Streams, threads, etc.).
 All the algorithm have been tested.

@@ -17,7 +17,7 @@ public class RequestRecord {
     private  int rangeMax;
 
     @DatabaseField(canBeNull = false)
-    private int algorithmChosen;
+    private String algorithmChosen;
 
     @DatabaseField(canBeNull = false)
     private int numberOfPrimesReturned;
@@ -57,9 +57,9 @@ public class RequestRecord {
 
     public void setRangeMax(final int rangeMax) { this.rangeMax = rangeMax; }
 
-    public int getAlgorithmChosen() { return algorithmChosen; }
+    public String getAlgorithmChosen() { return algorithmChosen; }
 
-    public void setAlgorithmChosen(final int algorithmChosen) { this.algorithmChosen = algorithmChosen; }
+    public void setAlgorithmChosen(final String algorithmChosen) { this.algorithmChosen = algorithmChosen; }
 
     public int getNumberOfPrimesReturned() { return numberOfPrimesReturned; }
 

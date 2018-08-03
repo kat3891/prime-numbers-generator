@@ -1,6 +1,8 @@
 package CommandLineInterface;
 
 import Calculator.PrimeNumberCalculator;
+import Calculator.exceptions.RangeOutOfReachException;
+import Calculator.exceptions.WrongRangeException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,12 +40,6 @@ public class CliInterface {
             System.out.println("Give the range maximum");
             final int max = scanner.nextInt();
 
-            // checking min < max
-            if (min > max) {
-                System.out.println("The minimum and the maximum range must be swapped");
-                return;
-            }
-
             System.out.println("Choose an algorithm");
             System.out.println("    1) Brute force calculations");
             System.out.println("    2) Brute force calculations using Java streams");
@@ -55,12 +51,17 @@ public class CliInterface {
 
             final int level = scanner.nextInt();
             System.out.println(SEPARATOR);
-            final List<Integer> res = PrimeNumberCalculator.getPrimeNumbers(level, min, max);
-
-            // determines all prime numbers in the range
-            // display the result
-            System.out.println(String.format("Between %d and %d, there are %d prime numbers", min, max, res.size()));
-            System.out.println(Arrays.toString(res.toArray()));
+            try {
+                final List<Integer> res = PrimeNumberCalculator.getPrimeNumbers(level, min, max);
+                // determines all prime numbers in the range
+                // display the result
+                System.out.println(String.format("Between %d and %d, there are %d prime numbers", min, max, res.size()));
+                System.out.println(Arrays.toString(res.toArray()));
+            } catch (WrongRangeException e) {
+                System.out.println("The minimum and the maximum range must be swapped");
+            } catch (RangeOutOfReachException e) {
+                System.out.println(e.getMessage());
+            }
 
             System.out.println(SEPARATOR);
             System.out.println("Exit ? ");

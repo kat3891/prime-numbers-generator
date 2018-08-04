@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static Calculator.PrimeNumberCalculator.getAlgorithmName;
+
 /**
  * Defines a command line interface for users. He can get primes numbers in some range as long as he wants, and must
  * chose an algorithm to do the calculations.
@@ -41,12 +43,7 @@ public class CliInterface {
             final int max = scanner.nextInt();
 
             System.out.println("Choose an algorithm");
-            System.out.println("    1) Brute force calculations");
-            System.out.println("    2) Brute force calculations using Java streams");
-            System.out.println("    3) Brute force calculations using Java streams and threads");
-            System.out.println("    4) Sieve of Erathostenes");
-            System.out.println("    5) Sieve of Erathostenes using Java streams");
-            System.out.println("    6) Sieve of Erathostenes using Java streams and threads");
+            System.out.println(getAlgorithmName(7));
 
 
             final int level = scanner.nextInt();

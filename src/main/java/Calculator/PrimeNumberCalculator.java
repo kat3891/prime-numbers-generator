@@ -3,7 +3,11 @@ package Calculator;
 import Calculator.exceptions.RangeOutOfReachException;
 import Calculator.exceptions.WrongRangeException;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Class to use to get primes numbers
@@ -45,7 +49,8 @@ public class PrimeNumberCalculator {
         }
     }
 
-    /** Get the algorithm name depending on its identifier
+    /** Get the algorithm name depending on its identifier. If the identifier does not correspond to an algorithm,
+     * it returns the list of algorithms associated to its identifier.
      *
      * @param algo: the algorithm identifier
      * @return the algorithm name
@@ -62,8 +67,10 @@ public class PrimeNumberCalculator {
                 return "Sieve of Erathostenes with for loops";
             case 5:
                 return "Sieve of Erathostenes with java streams";
-            default:
+            case 6:
                 return "Sieve of Erathostenes with java streams and multiple threads";
+            default:
+                return IntStream.rangeClosed(1, 6).mapToObj(i -> String.format("%s)     %s \n", i, getAlgorithmName(i))).collect(Collectors.joining());
         }
     }
 }

@@ -19,7 +19,7 @@ public class Main {
 
     // application parameters
     final private static ApplicationProperties APP_PROPERTIES = new ApplicationProperties();
-    final static CustomLogger LOGGER = new CustomLogger(APP_PROPERTIES.LOG_FILE, APP_PROPERTIES.LOG_LIMIT, APP_PROPERTIES.LOG_COUNT);
+    final private static CustomLogger LOGGER = new CustomLogger(APP_PROPERTIES.LOG_FILE, APP_PROPERTIES.LOG_LIMIT, APP_PROPERTIES.LOG_COUNT);
     final private static Audit AUDIT =  new Audit(APP_PROPERTIES.DATABASE_URL, LOGGER);
 
     /** This function build the HTTP response header. It contains some security measures, but needs to be improved. */
@@ -105,6 +105,7 @@ public class Main {
         try {
             // get the list of prime numbers in the defined range
             List<Integer> res = PrimeNumberCalculator.getPrimeNumbers(algoChosen, min, max);
+            // stop the timer
             long timeElapsed = System.currentTimeMillis() - start; // time elapsed in milliseconds
 
             // record the request and some of the answer in a database
@@ -130,19 +131,13 @@ public class Main {
         response.type("text/html;charset=utf-8");
         buildResponseHttpHeaders(response);
 
-        return "<h1>Prime number generator</h1>" +
+        return String.format("<h1>Prime number generator</h1>" +
                 " <p>This tool helps you to get primes number in a range.</p> " +
                 "<p>To do so, use the URL: '/primes?min=22&max=50' where the min and the max defines the range," +
-                " optionnaly the algorithm chosen: '/primes?min=22&max=50&algo=1' where algo can be:</p>" +
-                "<ul>" +
-                "<li>Brute force algorithm using for loops</li>" +
-                "<li>Brute force algorithm using IntStreams</li>" +
-                "<li>Brute force algorithm using IntStreams and multiple threads</li>" +
-                "<li>Sieve of Erathostenes using for loops</li>" +
-                "<li>Sieve of Erathostenes using IntStreams</li>" +
-                "<li>Sieve of Erathostenes using IntStreams and multiple threads</li>" +
-                "</ul>" +
-                "If no range is given,  the prime numbers that you will be given will be between 0 and 100. If no algorithm is given, the sieve of erathostenes will be used.</p>";
+                " optionnaly the algorithm chosen: '/primes?min=22&max=50&algo=1' where algo can be:</p> " +
+                        "<p>%s</p>" +
+                "<p>If no range is given,  the prime numbers that you will be given will be between 0 and 100. If no algorithm is given, the sieve of erathostenes will be used.</p>",
+                String.join("<br />", PrimeNumberCalculator.getAlgorithmName(200).split("\n")));
     }
 
 

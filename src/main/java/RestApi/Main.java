@@ -3,6 +3,9 @@ package RestApi;
 import Calculator.PrimeNumberCalculator;
 import Calculator.exceptions.RangeOutOfReachException;
 import Calculator.exceptions.WrongRangeException;
+import RestApi.audit.Audit;
+import RestApi.utils.CustomLogger;
+import RestApi.utils.StandardResponse;
 import spark.Request;
 import spark.Response;
 
@@ -10,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
-import static RestApi.CustomLogger.getStackTrace;
+import static RestApi.utils.CustomLogger.getStackTrace;
 import static spark.Spark.*;
 
 

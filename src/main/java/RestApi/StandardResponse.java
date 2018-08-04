@@ -9,11 +9,9 @@ import spark.Response;
  */
 class StandardResponse {
 
-    String message;
-    String data;
+    private String message;
+    private String data;
 
-    private static  final String SERVER_NAME="Prime Numbers Generator";
-    private static  final String CSP_HEADERS="default-src 'self'";
 
     /** Create a standard response when an error occured: a message is given to the user,
      * and the http status code is changed depending on the error: malformed request etc.

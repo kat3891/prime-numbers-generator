@@ -34,7 +34,7 @@ class CustomLogger {
      * @param e: the exception
      * @return the stack trace of the exception
      */
-    public static String getStackTrace(Exception e) {
+    static String getStackTrace(Exception e) {
         StringWriter sw = new StringWriter();
         e.printStackTrace(new PrintWriter(sw));
         return sw.toString();
